@@ -1,0 +1,13 @@
+heat_template_version: 2015-10-15
+parameters:
+  image:
+    type: string
+    label: Image name or ID
+    default: CirrOS
+  private_network_id:
+    type: string
+    label: Private network name or ID
+    default: <private_network_id>
+  floating_ip:
+    type: string
+    default: <floating_ip>

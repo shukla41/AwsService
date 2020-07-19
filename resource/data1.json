@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Romero Allen",
+    "song": "Atomic Dim",
+    "id": "b4b0da3f-36e3-4569-b196-3ad982f72bbd",
+    "info": {
+      "priceUsdCents": 392,
+      "publisher": "QUAREX"
+    }
+  },
+  {
+    "artist": "Hilda Barnes",
+    "song": "Almond Dutch",
+    "id": "eeb58c73-603f-4d6b-9e3b-cf587488f488",
+    "info": {
+    "priceUsdCents": 161,
+    "publisher": "LETPRO"
+  }
+  }
+]

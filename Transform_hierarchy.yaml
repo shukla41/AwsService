@@ -1,0 +1,8 @@
+- repartition: Y
+- Flag: Y
+- step:
+   - stepName: PART
+   - sql: select * from table
+- step:
+   - stepName: PART2
+   - sql: select * from table2
