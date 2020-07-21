@@ -3,24 +3,24 @@ import boto3
 dynamodb = boto3.client("dynamodb")
 
 response = dynamodb.create_table(
-  TableName="basictab",
+  TableName="PlaceOrder30",
   AttributeDefinitions=[
     {
-      "AttributeName": "artist",
-      "AttributeType": "S"
+      "AttributeName": "OrderId",
+      "AttributeType": "N"
     },
     {
-      "AttributeName": "song",
-      "AttributeType": "S"
+      "AttributeName": "CustomerId",
+      "AttributeType": "N"
     }
   ],
   KeySchema=[
     {
-      "AttributeName": "artist",
+      "AttributeName": "OrderId",
       "KeyType": "HASH"
     },
     {
-      "AttributeName": "song",
+      "AttributeName": "CustomerId",
       "KeyType": "RANGE"
     }
   ],

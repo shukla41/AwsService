@@ -20,7 +20,7 @@ def upload():
 
             print(item)
             response = dynamodb.put_item(
-                TableName='basictab1',
+                TableName='PlaceOrder24',
                 Item=item
             )
             print("UPLOADING ITEM")
@@ -28,3 +28,5 @@ def upload():
 
 
 upload()
+
+{'OrderId': {'N': '1'}, 'CustomerId': {'N': '1010'}, 'PaymentType': {'S': 'Card'}, 'OrderType': {'S': 'online'}, 'OrderItems': {'M': {'Item1': {'S': 'pizza'}, 'Item2': {'S': 'bun'}}}, 'PaymentDetails': {'M': {'cardnumber': {'S': 1111}, 'cardname': {'S': 'visa'}}}}
