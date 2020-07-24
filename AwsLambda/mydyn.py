@@ -3,7 +3,20 @@ import boto3
 
 conn = boto3.resource('dynamodb')
 table = conn.Table('PlaceOrder')
-
+'''{
+  "OrderId": "1",
+  "CustomerId": "1010",
+  "PaymentType": "Card",
+  "OrderType": "online",
+  "OrderItems": {
+    "Item1": "pizza",
+    "Item2": "bun"
+  },
+  "PaymentDetails": {
+    "cardnumber": 1111,
+    "cardname": "visa"
+  }
+}'''
 
 def lambda_handler(event, context):
     item = {
@@ -11,6 +24,7 @@ def lambda_handler(event, context):
         'CustomerId': int(event['CustomerId']),
         'PaymentType': event['PaymentType'],
         'OrderType': event['OrderType'],
+        'OrderStatus': "Not Confirmed",
         'OrderItems': {
             'Item1': event['OrderItems']['Item1'],
             'Item2': event['OrderItems']['Item2']
@@ -18,7 +32,8 @@ def lambda_handler(event, context):
         'PaymentDetails': {
             'cardnumber': event['PaymentDetails']['cardnumber'],
             'cardname': event['PaymentDetails']['cardname']
-        }
+        },
+        'PaymentApproved': 'false'
 
     }
 
@@ -30,5 +45,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
+        'body': response
     }

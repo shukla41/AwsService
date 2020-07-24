@@ -3,7 +3,7 @@ import boto3
 dynamodb = boto3.client("dynamodb")
 
 response = dynamodb.create_table(
-  TableName="PlaceOrder30",
+  TableName="PlaceOrder",
   AttributeDefinitions=[
     {
       "AttributeName": "OrderId",
