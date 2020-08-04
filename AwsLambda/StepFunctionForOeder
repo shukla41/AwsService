@@ -1,10 +1,10 @@
 {
-    "Comment": "Pizza Order State Machine.",
-    "StartAt": "myfunc",
+    "Comment": "Order State Machine.",
+    "StartAt": "placeOrder",
     "States": {
-        "myfunc": {
+        "placeOrder": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:138363912925:function:myfunc",
+            "Resource": "arn:aws:lambda:us-east-1:391741523388:function:placeOrder",
             "InputPath": "$.lambda",
             "ResultPath": "$.lambda.lambdaresult",
             "OutputPath": "$.lambda",
@@ -12,7 +12,7 @@
         },
         "ProcessPayment": {
             "Type": "Task",
-            "Resource": "arn:aws:lambda:us-east-1:138363912925:function:payment",
+            "Resource": "arn:aws:lambda:us-east-1:391741523388:function:ProcessPayment",
             "Next": "IsPaymentSuccessful"
         },
         "IsPaymentSuccessful": {
@@ -21,24 +21,35 @@
                 {
                     "Variable": "$.paymentSuccess",
                     "NumericEquals": 0,
-                    "Next": "Pass"
+                    "Next": "DeliverToCustomer"
                 },
                 {
                     "Variable": "$.paymentSuccess",
                     "NumericEquals": 1,
-                    "Next": "Fail"
+                    "Next": "NotDeliverToCustomer"
                 }
             ]
         },
+      "DeliverToCustomer":{
+          "Type": "Task",
+          "Resource": "arn:aws:lambda:us-east-1:391741523388:function:deliverToCustomer",
+            "Next": "Pass"
+      },
+      "NotDeliverToCustomer":{
+          "Type": "Task",
+          "Resource": "arn:aws:lambda:us-east-1:391741523388:function:notDeliverToCustomer",
+            "Next": "Fail"
+      },
       "Pass": {
         "Type": "Pass",
-        "Result": "Pass",
+        "Result": "Order to be despatched",
         "End": true
       },
       "Fail": {
           "Type": "Fail",
-          "Cause": "No stock available."    }
+          "Cause": "Something Wrong in your transaction."    }
 }}
+
 
 '''
 {

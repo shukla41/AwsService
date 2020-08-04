@@ -1,0 +1,22 @@
+const aws =  require("aws-sdk");
+const sns = new aws.SNS({
+   region:'us-east-1'
+});
+exports.handler = function(event, context, callback) {
+   console.log("AWS lambda and SNS trigger ");
+   console.log(event);
+   const snsmessage = "Ordered delivered soon"
+   console.log(snsmessage);
+   sns.publish({
+      Message: snsmessage,
+      PhoneNumber: '+917003385177'
+   }, function (err, data) {
+      if (err) {
+         console.log(err);
+         callback(err, null);
+      } else {
+         console.log(data);
+         callback(null, data);
+      }
+   });
+};

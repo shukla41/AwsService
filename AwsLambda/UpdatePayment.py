@@ -30,11 +30,8 @@ def lambda_handler(event, context):
                 'OrderStatus': {'Value': 'Confirmed'}
             }
         )
-        chk = {"paymentSuccess": "true"}
+        chk = {"paymentSuccess": 0}
     else:
-        chk = {"paymentSuccess": "false"}
+        chk = {"paymentSuccess": 1}
 
-    return {
-        'statusCode': 200,
-        'body': chk
-    }
+    return chk
